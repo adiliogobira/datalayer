@@ -25,7 +25,7 @@ class Connect
         if (empty(self::$instance)) {
             try {
                 self::$instance = new PDO(
-                    DATA_LAYER_CONFIG["driver"] . ":host=" . DATA_LAYER_CONFIG["host"] . ";dbname=" . DATA_LAYER_CONFIG["dbname"] . ";port=" . DATA_LAYER_CONFIG["port"],
+                    DATA_LAYER_CONFIG["driver"] . ":dbname=" . DATA_LAYER_CONFIG["host"] . '/' . DATA_LAYER_CONFIG["dbname"],
                     DATA_LAYER_CONFIG["username"],
                     DATA_LAYER_CONFIG["passwd"],
                     DATA_LAYER_CONFIG["options"]
@@ -34,6 +34,7 @@ class Connect
                 self::$error = $exception;
             }
         }
+
         return self::$instance;
     }
 
